@@ -209,6 +209,9 @@ main{
 
   header img{
     max-width: 30%;
-    margin-left: 40%;
+    margin-left: 38%;
+  }
+  .calc{
+    width: 30%;
   }
 }
