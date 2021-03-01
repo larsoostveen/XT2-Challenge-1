@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="nl">
+	<head>
+		<meta charset="UTF-8" />
+        <title>Interplanetary Transport System Interface | Omgeving</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link type="text/css" rel="stylesheet" href="styles/layout.css" />
+        <link type="text/css" rel="stylesheet" href="styles/main.css" />
+        <script src="https://kit.fontawesome.com/43fff5c10f.js" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+    </head>
+    <body>
+        <header class="header">
+            <a href="index.html"><img src="images/SpaceX_Logo.png" alt="Logo SpaceX" class="logo" /></a>
+            <a class="terug" href="index.html"><i class="fas fa-arrow-left"></i>&nbsp;Ga terug</a>
+        </header>
+        <main class="main">
+            <div class="grid-info">
+                <h3>Afstand afgelegd over tijd</h3>
+                <canvas id="omgevingAfstand" height="300px"></canvas>
+            </div>
+            <div class="grid-info">
+                <h3>Atmosfeer</h3>
+                <canvas id="omgevingAtmosfeer" height="300px"></canvas>
+            </div>
+        </main>
+            
+    </body>
+    <script>
+        Chart.defaults.global.responsive = false;
+        var omgevingAfstand = document.getElementById('omgevingAfstand').getContext('2d');
+            var aftandChart = new Chart(omgevingAfstand, {
+                type: 'line',
+                data: {
+                    datasets: [{
+                        label: 'Afstand afgelegd in km',
+                        data: [0, 15000000, 30000000, 45000000, 0],
+                        backgroundColor: 'black'
+                    }],
+                    labels: ['Dag 1', 'Dag 5', 'Dag 10', 'Dag 20', 'Dag 30']
+                },
+                options: {}
+            });
+
+        var omgevingAtmosfeer = document.getElementById('omgevingAtmosfeer').getContext('2d');
+            var atmosfeerChart = new Chart(omgevingAtmosfeer, {
+                type: 'radar',
+                data: {
+                    labels: ['Carbon dioxide', 'Nitrogen', 'Argon', 'Oxygen', 'Carbon monoxide', 'Water vapor'],
+                    datasets: [{
+                        data: [20, 10, 4, 2, 2, 5],
+                        borderColor: 'black',
+                        label: 'Atmosfeer van Mars in %',
+                        borderWidth: 1
+                    }]
+            },
+            options: {}
+            });
+    </script>
+</html>
+
+
+

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="nl">
+	<head>
+		<meta charset="UTF-8" />
+        <title>Interplanetary Transport System Interface | Informatie</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link type="text/css" rel="stylesheet" href="styles/layout.css" />
+        <link type="text/css" rel="stylesheet" href="styles/main.css" />
+        <script src="https://kit.fontawesome.com/43fff5c10f.js" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+    </head>
+    <body>
+        <header class="header">
+            <a href="index.html"><img src="images/SpaceX_Logo.png" alt="Logo SpaceX" class="logo" /></a>
+            <a class="terug" href="index.html"><i class="fas fa-arrow-left"></i>&nbsp;Ga terug</a>
+        </header>
+        <main class="main">
+            <div class="grid-info">
+                <h3>Brandstof</h3>
+                <canvas id="voertuigBrandstof"></canvas>
+            </div>
+            <div class="grid-info">
+                <h3>Snelheid</h3>
+                <canvas id="voertuigSnelheid"></canvas>
+            </div>
+            <div class="grid-info">
+                <h3>Acceleratie</h3>
+                <canvas id="voertuigAcceleratie" height="300px"></canvas>
+            </div>
+            <div class="grid-info">
+                <h3>G-Force</h3>
+                <canvas id="voertuigGforce" height="300px"></canvas>
+            </div>
+        </main>
+            
+    </body>
+    <script>
+        Chart.defaults.global.responsive = false;
+
+		var voertuigBrandstof = document.getElementById('voertuigBrandstof').getContext('2d');
+            var brandstofChart = new Chart(voertuigBrandstof, {
+                type: 'pie',
+                data : {
+                    datasets: [{
+                        data: [10, 90],
+                        backgroundColor: ["grey", "black"]
+                    }],
+                    labels: [
+                        'Verbruikte brandstof',
+                        'Resterende brandstof'
+                    ],
+                    backgroundColor:'white'
+                },
+                options: {}
+            });		
+
+        var voertuigSnelheid = document.getElementById('voertuigSnelheid').getContext('2d');
+            var snelheidChart = new Chart(voertuigSnelheid, {
+                type: "doughnut",
+                data: {
+                    labels: ["Huidige snelheid in km/h"],
+                    datasets: [
+                    {
+                        label: ["#"],
+                        data: [2000, 550],
+                        backgroundColor: ["black"],
+                        borderWidth: 1
+                    }
+                    ]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    circumference: Math.PI + 1,
+                    rotation: -Math.PI - 0.5,
+                    cutoutPercentage: 64,
+                }
+                });
+
+        var voertuigAcceleratie = document.getElementById('voertuigAcceleratie').getContext('2d');
+        var speedData = {
+                labels: ["0s", "20s", "40s", "60s", "80s", "100s", "120s", "140s", "160s", "180s", "200s"],
+                datasets: [{
+                    label: "Hoogte in m",
+                    data: [0, 1244, 5377, 11617, 19872, 31412, 44726, 57396, 67893, 77485, 85662],
+                    lineTension: 0,
+                    fill: false,
+                    borderColor: 'black',
+                    backgroundColor: 'transparent',
+                    pointBorderColor: 'black',
+                    pointBackgroundColor: 'black',
+                    pointRadius: 5,
+                    pointHoverRadius: 10,
+                    pointHitRadius: 30,
+                    pointBorderWidth: 5                
+                }]
+                };
+
+                var chartOptions = {
+                legend: {
+                    display: true,
+                    position: 'top',
+                    labels: {
+                    boxWidth: 80,
+                    padding: 0.5,
+                    fontColor: 'black'
+                    }
+                }
+                };
+
+                var lineChart = new Chart(voertuigAcceleratie, {
+                    type: 'line',
+                    data: speedData,
+                    options: {
+                    }
+                });
+
+        var voertuigGforce = document.getElementById('voertuigGforce').getContext('2d');
+        var gforceChart = new Chart(voertuigGforce, {
+            type: 'polarArea',
+            data: {
+                datasets: [{
+                    data: [3, 9],
+                    backgroundColor: ['black', 'grey']
+                }],
+            labels: ['G-force na de lancering', 'G-Force tijdens de lancering'],
+            },
+            options: {}
+        });
+        </script>
+</html>
+
+
+

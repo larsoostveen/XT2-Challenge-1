@@ -1,0 +1,214 @@
+@font-face{
+  font-family: 'D-DINCondensed';
+  src: url(../font/D-DINCondensed.otf);
+}
+
+html {
+	box-sizing: border-box;
+}
+
+*, 
+*:before,
+*:after{
+	box-sizing: inherit;
+}
+
+body{
+  background-color: black;
+	color: #FFFFFF;
+  font-family: 'D-DINCondensed';
+  margin: 0;
+  padding: 0;
+}
+
+.terug, .header, .main, .blok1, .blok2, .blok3, .blok4, .grid-info, .footer{
+  padding: 0.2em 1em;
+}
+
+h1{
+  font-size: 30px;
+}
+
+h2{
+  font-size: 22px;
+}
+
+h3{
+  font-size: 21px;
+}
+
+.terug{
+  font-size: 23px;
+  text-decoration: none;
+  color: white;
+  border: 1px solid white;
+  background-color: black;
+  border-radius: 5px;
+  margin-top: 1em;
+}
+
+.terug:hover{
+  background-color: white;
+  color: black;
+}
+/* Header */
+header{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+header img{
+  max-width: 90%;
+  margin-left: 5%;
+}
+/* Main */
+main{
+  display: flex;
+  flex-flow: wrap;
+  align-items: center;
+  text-align: center;
+  justify-content: flex-start;
+}
+
+.grid-info{
+  display: block;
+  width: 100%;
+  text-align: center;
+  background-color: whitesmoke;
+  border-radius: 25px;
+  color: black;
+  padding: 1em;
+  margin-top: 3%;
+}
+
+/* Items */
+.grid-item{
+  width: 40vw;
+  background-color: white;
+  border-radius: 25px;
+  height: 200px;
+  color: black;
+  margin-left: 1em;
+  margin-top: 1em;
+  padding: 1em;
+}
+
+.grid-item i{
+  font-size: 5em;
+}
+
+.grid-item a{
+  text-decoration: none;
+  color: black;
+}
+
+.blok1, .blok2, .blok3, .blok4{
+  text-align: center;
+  justify-content: center;
+  padding: 2em;
+}
+
+/* Rekenmachine */
+.calc{
+  height: 100%;
+}
+
+.calculator {
+  font-size: 28px;
+  margin: 0 auto;
+  width: 10em;
+}
+
+.broken {
+  animation: broken 2s;
+  transform: translate3d(0,-2000px,0);
+  opacity: 0;
+}
+
+.viewer {
+  color: black;
+  float: left;
+  line-height: 3em;
+  text-align: right;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 7.5em;
+  height: 3em;
+}
+
+.calculator button {
+  border: 0;
+  background: black;
+  color: white;
+  cursor: pointer;
+  float: left;
+  font: inherit;
+  margin: 0.25em;
+  width: 2em;
+  height: 2em;
+  transition: all 0.5s;
+  
+}
+
+/* CSS iPad */
+@media only screen and (min-width: 601px){
+  header{
+    display: flex;
+    flex-flow: column;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    margin: 1em;
+  }
+
+  header img{
+    width: 50%;
+    justify-content: center;
+    align-items: center;
+    margin-left: 30%;
+  }
+
+  .terug{
+    margin-top: 1em;
+  }
+
+  main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+  }
+  
+  .grid-item i{
+    font-size: 3em;
+  }
+
+  .grid-info{
+    width: 40%;
+    height: 400px;
+    padding: 1em;
+    margin: 1em;
+    display: flex;
+    flex-flow: column;
+    text-align: center;
+    align-content: center;
+  }
+
+  .calc{
+    height: 500px;
+    width: 50%;
+  }
+}
+
+/* CSS Laptop */
+@media only screen and (min-width: 1200px){
+  .grid-info{
+    width: 20%;
+  }
+
+  header img{
+    max-width: 30%;
+    margin-left: 40%;
+  }
+}

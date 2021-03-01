@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="nl">
+	<head>
+		<meta charset="UTF-8" />
+        <title>Interplanetary Transport System Interface | Voorraden</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link type="text/css" rel="stylesheet" href="styles/layout.css" />
+        <link type="text/css" rel="stylesheet" href="styles/main.css" />
+        <script src="https://kit.fontawesome.com/43fff5c10f.js" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+    </head>
+    <body>
+        <header class="header">
+            <a href="index.html"><img src="images/SpaceX_Logo.png" alt="Logo SpaceX" class="logo" /></a>
+            <a class="terug" href="index.html"><i class="fas fa-arrow-left"></i>&nbsp;Ga terug</a>
+        </header>
+        <main class="main">
+            <div class="grid-info">
+                <h3>Eten</h3>
+                <canvas id="voorradenEten" height="300px"></canvas>
+            </div>
+            <div class="grid-info">
+                <h3>Drinken</h3>
+                <canvas id="voorradenDrinken"></canvas>
+            </div>
+        </main>
+            
+    </body>
+    <script>
+        Chart.defaults.global.responsive = false;
+        var voorradenEten = document.getElementById('voorradenEten').getContext('2d');
+            var etenChart = new Chart(voorradenEten, {
+                type: 'radar',
+                data: {
+                    labels: ['Tortillas', 'Vers brood', 'Ontbijt rollen', 'Appels', 'Bananen', 'Manderijnen'],
+                    datasets: [{
+                        data: [40, 35, 50, 20, 25, 50],
+                        borderColor: 'black',
+                        label: 'Etenswaren voorraden',
+                        borderWidth: 1
+                    }]
+            },
+            options: {}
+            });
+
+        var voorradenDrinken = document.getElementById('voorradenDrinken').getContext('2d');
+            var drinkenChart = new Chart(voorradenDrinken, {
+                type: 'pie',
+                data : {
+                    datasets: [{
+                        data: [97, 3],
+                        backgroundColor: ["black", "white"]
+                    }],
+                    labels: [
+                        'Beschikbare water in %',
+                        'Verbruikte water in %'
+                    ],
+                    backgroundColor:'white'
+                },
+                options: {}
+            });		
+    </script>
+</html>
+
+
+

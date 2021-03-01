@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="nl">
+	<head>
+		<meta charset="UTF-8" />
+        <title>Interplanetary Transport System Interface | Tools</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link type="text/css" rel="stylesheet" href="styles/layout.css" />
+        <link type="text/css" rel="stylesheet" href="styles/main.css" />
+        <script src="https://kit.fontawesome.com/43fff5c10f.js" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+        <script src="script/script.js"></script>
+    </head>
+    <body>
+        <header class="header">
+            <a href="index.html"><img src="images/SpaceX_Logo.png" alt="Logo SpaceX" class="logo" /></a>
+            <a class="terug" href="index.html"><i class="fas fa-arrow-left"></i>&nbsp;Ga terug</a>
+        </header>
+        <main class="main">
+            <div class="grid-info calc">
+                <h3>Rekenmachine</h3>
+                <div class="calculator" class="calculator">
+
+                    <button id="clear" class="clear">C</button>
+                  
+                    <div id="viewer" class="viewer">0</div>
+                  
+                    <button class="num" data-num="7">7</button>
+                    <button class="num" data-num="8">8</button>
+                    <button class="num" data-num="9">9</button>
+                    <button data-ops="plus" class="ops">+</button>
+                  
+                    <button class="num" data-num="4">4</button>
+                    <button class="num" data-num="5">5</button>
+                    <button class="num" data-num="6">6</button>
+                    <button data-ops="minus" class="ops">-</button>
+                  
+                    <button class="num" data-num="1">1</button>
+                    <button class="num" data-num="2">2</button>
+                    <button class="num" data-num="3">3</button>
+                    <button data-ops="times" class="ops">*</button>
+                  
+                    <button class="num" data-num="0">0</button>
+                    <button class="num" data-num=".">.</button>
+                    <button id="equals" class="equals" data-result="">=</button>
+                    <button data-ops="divided by" class="ops">/</button>
+                  </div>
+
+            </div>
+        </main>
+    </body>
+    <script>
+   
+(function() {
+    "use strict";
+      var el = function(element) {
+      if (element.charAt(0) === "#") { 
+        return document.querySelector(element);
+      }
+  
+      return document.querySelectorAll(element);
+    };
+  
+    var viewer = el("#viewer"), 
+      equals = el("#equals"), 
+      nums = el(".num"), 
+      ops = el(".ops"), 
+      theNum = "", 
+      oldNum = "", 
+      resultNum, 
+      operator; 
+  
+    var setNum = function() {
+      if (resultNum) {
+        theNum = this.getAttribute("data-num");
+        resultNum = "";
+      } else { 
+        theNum += this.getAttribute("data-num");
+      }
+  
+      viewer.innerHTML = theNum; 
+  
+    };
+  
+    var moveNum = function() {
+      oldNum = theNum;
+      theNum = "";
+      operator = this.getAttribute("data-ops");
+  
+      equals.setAttribute("data-result", ""); 
+    };
+  
+    var displayNum = function() {
+  
+      oldNum = parseFloat(oldNum);
+      theNum = parseFloat(theNum);
+  
+      switch (operator) {
+        case "plus":
+          resultNum = oldNum + theNum;
+          break;
+  
+        case "minus":
+          resultNum = oldNum - theNum;
+          break;
+  
+        case "times":
+          resultNum = oldNum * theNum;
+          break;
+  
+        case "divided by":
+          resultNum = oldNum / theNum;
+          break;
+  
+        default:
+          resultNum = theNum;
+      }
+  
+      if (!isFinite(resultNum)) {
+        if (isNaN(resultNum)) { 
+          resultNum = "You broke it!";
+        } else { 
+          resultNum = "Look at what you've done";
+          el('#calculator').classList.add("broken"); 
+          el('#reset').classList.add("show"); 
+        }
+      }
+  
+      viewer.innerHTML = resultNum;
+      equals.setAttribute("data-result", resultNum);
+  
+      oldNum = 0;
+      theNum = resultNum;
+  
+    };
+  
+    var clearAll = function() {
+      oldNum = "";
+      theNum = "";
+      viewer.innerHTML = "0";
+      equals.setAttribute("data-result", resultNum);
+    };
+  
+    for (var i = 0, l = nums.length; i < l; i++) {
+      nums[i].onclick = setNum;
+    }
+  
+    for (var i = 0, l = ops.length; i < l; i++) {
+      ops[i].onclick = moveNum;
+    }
+  
+    equals.onclick = displayNum;
+  
+    el("#clear").onclick = clearAll;
+  
+    
+  
+  }());
+    </script>
+</html>
+
+
+
